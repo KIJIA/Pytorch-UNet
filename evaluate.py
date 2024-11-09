@@ -4,6 +4,7 @@ from tqdm import tqdm
 
 from utils.dice_score import multiclass_dice_coeff, dice_coeff
 
+
 @torch.inference_mode()
 def evaluate(net, dataloader, device, amp):
     net.eval()
@@ -65,8 +66,8 @@ def evaluate(net, dataloader, device, amp):
     net.train()
 
     # Compute the average scores
-    dice_score /= max(num_val_batches, 1)
-    iou_score /= max(num_val_batches, 1)
-    pixel_accuracy = correct_pixels / total_pixels
+    dice_score /= max(num_val_batches, 1)  # dice分数
+    iou_score /= max(num_val_batches, 1)  # iou分数
+    pixel_accuracy = correct_pixels / total_pixels  # 像素准确率
 
     return dice_score, iou_score, pixel_accuracy
